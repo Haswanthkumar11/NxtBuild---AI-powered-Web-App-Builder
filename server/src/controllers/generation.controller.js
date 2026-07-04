@@ -16,6 +16,6 @@ export const generateCode = async (req, res, next) => {
     return res.json({ success: true, data: result });
   } catch (error) {
     if (error.statusCode) return res.status(error.statusCode).json({ success: false, message: error.message });
-    next(error);
+    return res.status(500).json({ success: false, message: error.message || 'Generation failed.' });
   }
 };
